@@ -1,0 +1,99 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+int contar_pontos(int a[], int b[])
+{
+	int cont = 0;
+	for(int i = 0; i < 6; i++)
+	{
+		for(int i2 = 0; i2 < 6; i2++)
+		{
+			if(a[i] == b[i2])
+			{
+				cont++;
+			}
+		}
+	}
+	return(cont);
+}
+
+int main()
+{ 
+	int ID, sena = 0, quina = 0, quadra = 0, perdido = 0, aux;
+	char inutil;
+	int sorteados[6]; 
+	sorteados[0] = 6; 
+	sorteados[1] = 9; 
+	sorteados[2] = 22; 
+	sorteados[3] = 23; 
+	sorteados[4] = 48; 
+	sorteados[5] = 52;   
+	int lost[6];
+	lost[0] = 4;
+	lost[1] = 8;
+	lost[2] = 15;
+	lost[3] = 16;
+	lost[4] = 23;
+	lost[5] = 42;
+	int jogo[6];
+	int win6[10] = {0};
+	int win5[10] = {0};
+	int win4[10] = {0};
+	int winL[10] = {0};
+	
+	FILE *cartelas = fopen("cartelas.txt", "r");
+	
+	while(feof(cartelas) == 0)
+	{
+		fscanf(cartelas, "%d", &ID);
+		fscanf(cartelas, "%c", &inutil);
+		for(int c = 0; c < 6; c++)
+		{
+			fscanf(cartelas, "%d", &jogo[c]);
+		}
+		if(contar_pontos(jogo, sorteados) == 6)
+		{
+			win6[sena] = ID;
+			sena++;
+		}
+		else if(contar_pontos(jogo, sorteados) == 5)
+		{
+			win5[quina] = ID;
+			quina++;
+		}
+		else if(contar_pontos(jogo, sorteados) == 4)
+		{
+			win4[quadra] = ID;
+			quadra++;
+		}
+		if(contar_pontos(jogo, lost) == 6)
+		{
+			winL[perdido] = ID;
+			perdido++;
+		}
+	}
+	
+	printf("Sena: ");
+	for( aux = 0; win6[aux] != '\0'; aux++)
+	{
+		printf("%d ", win6[aux]);
+	}
+	printf("\nQuina: ");
+	for( aux = 0; win5[aux] != '\0'; aux++)
+	{
+		printf("%d ", win5[aux]);
+	}
+	printf("\nQuadra: ");
+	for( aux = 0; win4[aux] != '\0'; aux++)
+	{
+		printf("%d ", win4[aux]);
+	}
+	printf("\nLost: ");
+	for( aux = 0; winL[aux] != '\0'; aux++)
+	{
+		printf("%d ", winL[aux]);
+	}
+	
+	fclose(cartelas);
+	return 0;
+}

@@ -1,0 +1,22 @@
+cesta Bruno 2
+cesta Andre 1
+cesta Joao 1
+cesta Pedro 1
+cesta Miguel 1
+cesta Paulo 1
+cesta Thiago 1
+cesta Felipe 1
+cesta Rafael 1
+cesta Julio 1
+cesta Renato 1
+cesta Lucas 1
+cesta Guilherme 1
+cesta Gabriel 1
+cesta Gustavo 1
+cesta Arthur 1
+processar
+artilheiro
+cesta Bruno 3
+cesta Andre 3
+processar
+artilheiro
